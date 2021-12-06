@@ -1,0 +1,39 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1 class="title is-1">Registration form</h1>
+
+<% if (it.errors) { %>
+<div class="control">
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+</div>
+<% } %>
+
+
+<form class="box" method="POST" action="/auth/register">
+<div class="field">
+<label class="label">Email</label>
+<div class="control">
+    <input class="input is-primary" type="email" name="email" placeholder="example@mail.com" value="<%= it.populated ? it.populated : "" %>" />
+</div>
+</div>
+
+
+<div class="field">
+<label class="label">Password</label>
+<div class="control">
+    <input class="input is-primary" type="password" name="password">
+</div>
+</div>
+
+<div class="control">
+    <input class="button is-primary is-rounded" type="submit" value="Register">
+</div>
+</form>
+
+<br/><a href="/auth/login">Already have an account? Login here.</a>

@@ -1,0 +1,14 @@
+<% layout('./layouts/layout.eta') %>
+
+<% if (it.correct) { %>
+    <h1 class="title is-1">Correct</h1>
+    <form action="/quiz">
+        <input class="button is-primary is-rounded" type="submit" value="Next question"/>
+    </form>
+<% } else { %>
+    <h1 class="title is-1">Incorrect</h1>
+    <h3 class="title is-3">The correct answer was: <%= it.correctAnswer.option_text %></h3>
+    <form action="/quiz">
+        <input class="button is-primary is-rounded" type="submit" value="Next question"/>
+    </form>
+<% } %>

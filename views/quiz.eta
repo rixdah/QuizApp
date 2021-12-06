@@ -1,0 +1,14 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1 class="title is-1">Quiz</h1><br/><br/>
+
+<% if (!it.question) { %>
+    <p class="title is-6">No questions exist so far.</p>
+<% } else { %>
+    <h3 class="title is-3"><%= it.question.question_text %></h3><br/>
+    <% it.options.forEach((option) => { %>
+        <form method="POST" action="/quiz/<%= it.question.id %>/options/<%= option.id %>">
+        <input class="button is-primary is-rounded" type="submit" value="<%= option.option_text %>"/><br/><br/>
+        </form>
+    <% }) %>
+<% } %>

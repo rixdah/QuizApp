@@ -1,0 +1,56 @@
+<% layout('./layouts/layout.eta') %>
+
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-primary">
+          <p class="title">Your statistics</p>
+          <div class="content">
+            <div class="field">
+            <label class="title is-3">Questions answered</label>
+            <div class="control">
+            <p class="title is-6"><%= it.answerCount %></p><br/>
+            </div>
+            </div>
+
+            <div class="field">
+            <label class="title is-4">Correct answer count</label>
+            <div class="control">
+            <p class="title is-6"><%= it.correctAnswerCount %></p><br/>
+            </div>
+            </div>
+
+            <div class="field">
+            <label class="title is-4">Correct answer percentage</label>
+            <div class="control">
+            <p class="title is-6"><%= it.percentage %>%</p><br/>
+            </div>
+            </div>
+
+            <div class="field">
+            <label class="title is-4">Number of answers to your questions</label>
+            <div class="control">
+            <p class="title is-6"><%= it.answersToUserQuestions %></p>
+            </div>
+            </div>
+          </div>
+        </article>
+        <article class="tile is-child notification is-info">
+          <p class="title">Top 5 users</p>
+          <div class="field">
+            <label class="title is-4">Most answered questions</label>
+            <div class="control">
+                <table class="table">
+                    <tr><th>User</th><th>Amount of answered questions</th></tr>
+                        <% it.usersWithMostAnsweredQuestions.forEach((user) => { %>
+                            <tr><td><%= user.email %></td><td><%= user.count %></td></tr>
+                        <% }) %>
+                </table>
+            </div>
+            </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

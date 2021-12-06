@@ -1,0 +1,12 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1 class="title is-1">Welcome to the quiz app!</h1><br/>
+<p class="title is-5">This is an application for creating quizzes. Any registered user can create new
+multiple choice questions and users can play them as a quiz. The multiple choice questions have 4 answer options
+and only one of them can be correct.
+
+<br/><br/>If you have not registered yet: 
+<a class="tag is-link" href="/auth/register">Register here</a>
+<br/><br/>And if you have already registered: 
+<a class="tag is-link" href="/auth/login">Login here</a>
+</p>

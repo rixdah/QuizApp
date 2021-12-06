@@ -1,0 +1,29 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1 class="title is-1">Login form</h1>
+
+<% if (it.error) { %>
+    <h4 class="title is-4"><%= it.error %></h4>
+<% } %>
+
+<form class="box" method="POST" action="/auth/login">
+<div class="field">
+<label class="label">Email</label>
+<div class="control">
+    <input class="input is-primary" type="email" name="email" placeholder="example@mail.com" value="<%= it.populated ? it.populated : "" %>" />
+</div>
+</div>
+
+<div class="field">
+<label class="label">Password</label>
+<div class="control">
+    <input class="input is-primary" type="password" name="password">
+</div>
+</div>
+
+<div class="control">
+    <input class="button is-primary is-rounded" type="submit" value="Login">
+</div>
+</form>
+
+<br/><a href="/auth/register">Don't have an account? Register here.</a>

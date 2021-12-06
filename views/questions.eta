@@ -1,0 +1,47 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1 class="title is-1">Questions</h1>
+
+
+<% if (it.questions && it.questions.length > 0) { %>
+<h4 class="title is-4">Choose a question from the list below to add answer options to it.</h4>
+    <% it.questions.forEach((question) => { %>
+        <div class="content">
+            <div class="box">
+                <p class="title is-5"><a href="/questions/<%= question.id %>"><%= question.title %></a></p>
+            </div>
+        </div>
+    <% }); %>
+<% } else { %>
+<h4 class="title is-4">You have not added any questions yet. Fill in the form below to add a question.</h4>
+<% }%>
+
+<br/><h2 class="title is-2">Add a question</h2>
+
+
+<% if (it.errors) { %>
+<div class="content">
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+</div>
+<% } %>
+
+<form method="POST" action="/questions">
+<div class="field">
+<label class="label">Question title</label>
+<div class="control">
+    <input class="input is-primary" type="text" name="title" placeholder="Question title" value="<%= it.population.title ? it.population.title : "" %>"/>
+</div>
+</div>
+
+<div class="field">
+<label class="label">Question text</label>
+<div class="control">
+    <textarea class="textarea is-primary" name="question_text" placeholder="Question text" ><%= it.population.question_text ? it.population.question_text : "" %></textarea><br/>
+<input class="button is-primary is-rounded" type="submit" value="Add question"/><br/><br/>
+</form>

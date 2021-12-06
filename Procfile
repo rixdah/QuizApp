@@ -1,0 +1,1 @@
+web: PGHOST='hattie.db.elephantsql.com' PGDATABASE='toqaourt' PGPASSWORD='IT2bAG9E34zg8zL__fGHuOZyYSacsIzb' deno run --allow-all --unstable heroku-deploy.js ${PORT}
