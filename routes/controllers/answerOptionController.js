@@ -28,6 +28,7 @@ const addAnswerOption = async ({ request, response, params, render }) => {
         answerOptionData,
         answerOptionValidationRules,
     );
+
     const answerOptions = await answerOptionService.getAnswerOptions(params.id);
     const correctAnswer = await answerOptionService.getCorrectAnswer(params.id);
 
@@ -46,6 +47,11 @@ const addAnswerOption = async ({ request, response, params, render }) => {
         render("question.eta", { question: await questionService.getQuestionById(params.id),
                                  answer_options: answerOptions,
                                  error: {error: "You can only have one correct answer option"},
+                                 population: answerOptionData});
+    } else if (answerOptions.length === 3 && correctAnswer.length === 0 && answerOptionData.is_correct === false) {
+        render("question.eta", { question: await questionService.getQuestionById(params.id),
+                                 answer_options: answerOptions,
+                                 error: {error: "You need to add one correct answer"},
                                  population: answerOptionData});
     } else {
         await answerOptionService.addAnswerOption(answerOptionData.question_id, answerOptionData.option_text, answerOptionData.is_correct);
