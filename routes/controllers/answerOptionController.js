@@ -38,20 +38,10 @@ const addAnswerOption = async ({ request, response, params, render }) => {
                                  answer_options: answerOptions,
                                  errors: answerOptionData.errors[0],
                                  population: answerOptionData});
-    } else if (answerOptions.length >= 4) {
-        render("question.eta", { question: await questionService.getQuestionById(params.id),
-                                 answer_options: answerOptions,
-                                 error: {error: "You can only submit 4 answer options at most"},
-                                 population: answerOptionData});
     } else if (correctAnswer.length === 1 && answerOptionData.is_correct) {
         render("question.eta", { question: await questionService.getQuestionById(params.id),
                                  answer_options: answerOptions,
-                                 error: {error: "You can only have one correct answer option"},
-                                 population: answerOptionData});
-    } else if (answerOptions.length === 3 && correctAnswer.length === 0 && answerOptionData.is_correct === false) {
-        render("question.eta", { question: await questionService.getQuestionById(params.id),
-                                 answer_options: answerOptions,
-                                 error: {error: "You need to add one correct answer"},
+                                 error: {error: "You cannot have more than one correct answer option"},
                                  population: answerOptionData});
     } else {
         await answerOptionService.addAnswerOption(answerOptionData.question_id, answerOptionData.option_text, answerOptionData.is_correct);

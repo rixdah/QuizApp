@@ -1,17 +1,16 @@
 import { executeQuery } from "../database/database.js";
 
 const getRandomQuestion = async () => {
-    const result = await executeQuery(`SELECT questions.id, COUNT (question_answer_options.id) as count
+    const result = await executeQuery(`SELECT questions.id, question_answer_options.is_correct
                                        FROM questions JOIN question_answer_options
                                        ON questions.id = question_answer_options.question_id
-                                       GROUP BY questions.id;`);
+                                       GROUP BY question_answer_options.is_correct, questions.id;`);
     const questions = [];
     result.rows.forEach((row) => {
-        if (row.count == 4){
+        if (row.is_correct === true && !questions.includes(row.id)){
             questions.push(row.id);
         }
     });
-
     if (questions.length > 0) {
         return questions[Math.floor(Math.random()*questions.length)];
     }

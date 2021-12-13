@@ -32,8 +32,15 @@ Check the "Correct answer" box before adding the correct answer option.</h5>
     </div>
 <% } %>
 
-<% if (it.answer_options.length < 4) { %>
-    <br/><strong>Note: Your question will not appear in the quiz if you do not have 4 answer options.</strong><br/>
+<% let correct = false %>
+<% it.answer_options.forEach((option) => { %>
+    <% if(option.is_correct) { %>
+        <% correct = true %>
+    <% } %>
+<% }); %>
+
+<% if (!correct) { %>
+    <br/><strong>Note: Your question will not appear in the quiz if you do not have a correct answer option.</strong><br/>
 <% } %>
 
 <br/><br/><form method="POST" action="/questions/<%= it.question.id %>/options">
