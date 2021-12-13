@@ -32,6 +32,10 @@ Check the "Correct answer" box before adding the correct answer option.</h5>
     </div>
 <% } %>
 
+<% if (it.answer_options.length < 4) { %>
+    <br/><strong>Note: Your question will not appear in the quiz if you do not have 4 answer options.</strong><br/>
+<% } %>
+
 <br/><br/><form method="POST" action="/questions/<%= it.question.id %>/options">
 <div class="field">
 <label class="label">Add an answer option</label>
@@ -71,8 +75,4 @@ Correct answer: <input type="checkbox" name="is_correct"/><br/><br/>
 <div/>
 <% } else { %>
     <p class="title is-6">No answer options have been added yet.</p>
-<% } %>
-
-<% if (it.answer_options.length < 4) { %>
-    <br/><br/><br/><strong>Note: Your question will not appear in the quiz if you do not have 4 answer options.</strong>
 <% } %>
