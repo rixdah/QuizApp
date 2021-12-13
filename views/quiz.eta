@@ -5,6 +5,7 @@
 <% if (!it.question) { %>
     <p class="title is-6">No questions exist so far.</p>
 <% } else { %>
+    <h2 class="title is-2"><%= it.question.title %><h2><br/>
     <h3 class="title is-3"><%= it.question.question_text %></h3><br/>
     <% it.options.forEach((option) => { %>
         <form method="POST" action="/quiz/<%= it.question.id %>/options/<%= option.id %>">

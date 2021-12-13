@@ -3,11 +3,6 @@ import { config } from "../config/config.js";
 
 const CONCURRENT_CONNECTIONS = 2;
 const connectionPool = new Pool({
-hostname: config.database.hostname,
-database: config.database.database,
-user: config.database.user,
-password: config.database.password,
-port: config.database.port,
 }, CONCURRENT_CONNECTIONS);
 
 const executeQuery = async (query, ...args) => {

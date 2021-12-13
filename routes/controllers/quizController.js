@@ -12,9 +12,6 @@ const getRandomQuestion = async ({ response, render }) => {
 
 };
 
-const getUserAnswer = async ({request}) => {
-    const body = request.body({type: "form"});
-};
 
 const showQuiz = async ({ render, params }) => {
     const randomQuestion = await questionService.getQuestionById(params.id);
@@ -33,4 +30,4 @@ const addAnswer = async ({ params, user, response }) => {
     }
 };
 
-export { getRandomQuestion, getUserAnswer, showQuiz, addAnswer };
+export { getRandomQuestion, showQuiz, addAnswer };

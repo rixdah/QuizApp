@@ -1,4 +1,4 @@
-The application can be used in an online location:
+The application can be used in an online location: https://quizapp-p2.herokuapp.com/
 or it can be used locally with the command:
 
 deno run --allow-all --unstable run-locally.js
@@ -42,3 +42,10 @@ CREATE TABLE question_answers (
 CREATE UNIQUE INDEX ON users((lower(email)));
 
 
+Changes in the application/my own extra implementations:
+
+Users cannot add more than 4 answer options for a question and only one of them is correct.
+Users have to add 4 answer options and one correct answer option for their questions to show up in the quiz.
+
+Also it was required in the quiz to have a button with the value "Choose" next to the answer options.
+I think it looks better when the value of the button is the answer option itself, so I made it look better that way.
